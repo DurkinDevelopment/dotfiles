@@ -1,0 +1,91 @@
+#!/bin/sh
+
+DRAFT_DIR=${DRAFT_DIR:-./draft}
+ACTIVE_DIR=${ACTIVE_DIR:-./active}
+
+display_help() {
+    echo "Usage: $(basename "$0") {build|apply}"
+    echo
+    echo "Commands:"
+    echo "draft - merge $ACTIVE_DIR to ./build at $DRAFT_DIR"
+    echo "apply - submit solved version of $DRAFT_DIR into $ACTIVE_DIR"
+}
+
+reset="\033[0m"
+red="\033[31m"
+green="\033[32m"
+yellow="\033[33m"
+
+case "$1" in
+  "" | -h | --help) display_help;;
+  draft)
+    if [ ! -d "build" ]; then
+        printf "${red}please \`make\` a build before!$reset\n"
+        exit 1
+    fi
+
+    if [ -d "$DRAFT_DIR" ]; then
+        printf "${red}A merging $DRAFT_DIR existed, accept or abandon it!$reset\n"
+        exit 1
+    fi
+
+    mkdir "$DRAFT_DIR"
+    if [ $? -ne 0 ]; then
+      printf "${red}$DRAFT_DIR is invalid$reset\n"
+      exit 1
+    fi
+
+    cp -r build/. "$DRAFT_DIR"
+
+    cd "$DRAFT_DIR"
+    rm -rf .git
+    git init -q
+    git checkout -b build -q
+    git add .
+    git commit -m build -q
+    git checkout --orphan draft -q
+    git rm -rf . -q
+    cd ~-
+
+    cp -r "$ACTIVE_DIR/." "$DRAFT_DIR"
+
+    cd "$DRAFT_DIR"
+    git add .
+    git commit -m active -q
+    if git merge build --allow-unrelated-histories --no-commit > /dev/null ; then
+        printf "${green}Available to run \`./merge-active apply\` if $DRAFT_DIR is satisfied!\n"
+    else
+        printf "${yellow}conflict found! \`(cd $DRAFT_DIR && git add .)\` after solve conflict before run \`./merge-active apply\`$reset\n"
+    fi
+    ;;
+  apply)
+    if ! [ -x "$(command -v stow)" ]; then
+        printf "${yellow}gnu stow are required!$reset\n"
+        exit 1
+    fi
+
+    if [ ! -d "$DRAFT_DIR" ]; then
+        printf "${red}run \`./merge-active draft\` before!$reset\n"
+        exit 2
+    fi
+
+    conflict="$(cd "$DRAFT_DIR" && git diff --name-only --diff-filter=U)"
+
+    if [ -n "$conflict" ]; then
+        printf "${red}conflict unresolved! should \`cd $DRAFT_DIR\` to resolve, then \`git add .\` !$reset\n"
+        exit 1
+    fi
+
+    rm -rf "$ACTIVE_DIR"
+    rm -rf "$DRAFT_DIR/.git"
+    mv "$DRAFT_DIR" "$ACTIVE_DIR"
+    stow -R -t ~ -d "$(dirname "$ACTIVE_DIR")" "$(basename "$ACTIVE_DIR")"
+
+    . ./post-install.sh
+    ;;
+  *)
+    printf "${red}Error Usage!$reset\n"
+    echo
+    display_help
+    ;;
+esac
