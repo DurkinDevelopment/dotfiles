@@ -12,8 +12,13 @@ clean:
 
 # Keep all dotfiles generated at ./build
 # Add any dotfiles make rules BELOW:
-build: neovim
-	cat src/zsh/rc.zsh > build/.zshrc
+
+## TODO: Add all configuration / installation to Makefile -> Abstract it out to it's own .sh file (value of abstraction vs global)
+
+
+build: zsh, neovim
+	# Copy my zsh config to build/.zshrc
+
 
 neovim: src = src/neovim/init
 neovim: dst = build/.config/nvim
@@ -22,4 +27,8 @@ neovim: dst = build/.config/nvim
 	cat $(src)/basic.vim >> $(dst)/init.vim
 	cat $(src)/keymap.vim >> $(dst)/init.vim
 
+# Setup the env var with each of the zsh config files and then copy the zshrc to the build directory
+zsh: 
+	ZSH_RC_FILES=$(wildcard src/zsh/rc.d/*)
+	cat src/zsh/zsh.rc > build/.zshrc
 
