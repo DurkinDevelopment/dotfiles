@@ -28,13 +28,14 @@ clean:
 build: zsh neovim
 
 zsh: $(ZSH_RC_FILES=$(wildcard src/zsh/rc.d/*))
-	cat src/zsh/zsh.rc >> build/.zshrc
+zsh:
+	cat src/zsh/zsh.rc > build/.zshrc
 
 neovim: SRC = src/neovim/init
 neovim: DST = build/.config/nvim
 neovim:
 	@mkdir -p $(DST)
-	cat $(SRC)/basic.vim >> $(DST)/init.vim
-	cat $(SRC)/plugins.vim >> $(DST)/init.vim
-	cat $(SRC)/keymap.vim >> $(DST)/init.vim
-	cat $(SRC)/misc.vim >> $(DST)/init.vim
+	cat $(SRC)/basic.vim > $(DST)/init.vim
+	cat $(SRC)/plugins.vim > $(DST)/init.vim
+	cat $(SRC)/keymap.vim > $(DST)/init.vim
+	cat $(SRC)/misc.vim > $(DST)/init.vim
