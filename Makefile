@@ -4,6 +4,13 @@
 
 ## TODO: Add in global vars node pkgs, pip pkgs, packages, base pkgs, pacman?, system enable, & flutter url?
 
+SCRIPT_DIR="src/"
+
+XDG_CACHE_HOME="build/.cache"
+XDG_CONFIG_HOME="build/.config"
+XDG_DATA_HOME="build/.local/share"
+
+$(ZSH_RC_FILES=$(wildcard src/zsh/rc.d/*))
 
 $(VERBOSE).SILENT:
 .PHONY: all clean setup_build build
@@ -25,11 +32,22 @@ clean:
 ## TODO: Add all configuration / installation to Makefile -> Abstract it out to it's own .sh file (value of abstraction vs global)
 ## TODO: What should go on the same line as the rule after the `:` & why?
 
+
+create_directories:
+	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_CACHE_HOME)/package))
+	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_CONFIG_HOME)/package))
+	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_DATA_HOME)/package))
+
+
+
 build: zsh neovim
 
-zsh: $(ZSH_RC_FILES=$(wildcard src/zsh/rc.d/*))
+zsh: SRC = src/zsh
+zsh: DST = build/.config/zsh
 zsh:
-	cat src/zsh/zsh.rc > build/.zshrc
+	cat $(SRC)/zshrc.rc > $(DST)/.zshrc
+	cat $(SRC)/zshenv.rc > $(DST)/.zshenv
+
 
 neovim: SRC = src/neovim/init
 neovim: DST = build/.config/nvim
