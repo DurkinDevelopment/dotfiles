@@ -10,6 +10,9 @@ XDG_CACHE_HOME="build/.cache"
 XDG_CONFIG_HOME="build/.config"
 XDG_DATA_HOME="build/.local/share"
 
+PACKAGES := zsh neovim
+
+## TODO: Set this as an environment variable so that the .zshrc file can access it
 $(ZSH_RC_FILES=$(wildcard src/zsh/rc.d/*))
 
 $(VERBOSE).SILENT:
@@ -33,10 +36,11 @@ clean:
 ## TODO: What should go on the same line as the rule after the `:` & why?
 
 
+## TODO: Run this and validate each of the package directories get created as they should
 create_directories:
-	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_CACHE_HOME)/package))
-	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_CONFIG_HOME)/package))
-	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_DATA_HOME)/package))
+	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_CACHE_HOME)/$(package)))
+	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_CONFIG_HOME)/$(package)))
+	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_DATA_HOME)/$(package)))
 
 
 
@@ -50,7 +54,6 @@ zsh:
 
 
 neovim: SRC = src/neovim/init
-neovim: DST = build/.config/nvim
 neovim:
 	@mkdir -p $(DST)
 	cat $(SRC)/basic.vim > $(DST)/init.vim
