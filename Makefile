@@ -40,6 +40,7 @@ clean:
 create_directories:
 	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_CACHE_HOME)/$(package)))
 	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_CONFIG_HOME)/$(package)))
+	## Are there any general patterns of there always being a 'log' file? Or will I need to create the package specific files in their own rule?
 	$(foreach package, $(PACKAGES), $(mkdir -p $(XDG_DATA_HOME)/$(package)))
 
 
@@ -47,14 +48,18 @@ create_directories:
 build: zsh neovim
 
 zsh: SRC = src/zsh
-zsh: DST = build/.config/zsh
+zsh: DST = $(XDG_CONFIG_HOME)/zsh 
 zsh:
 	cat $(SRC)/zshrc.rc > $(DST)/.zshrc
 	cat $(SRC)/zshenv.rc > $(DST)/.zshenv
 
 
 neovim: SRC = src/neovim/init
+neovim: DST = $(XDG_CONFIG_HOME)/nvim 
 neovim:
+	## Does this need to be set as an environment variable? Or can I create the directory before hand for it to work?
+	touch $(XDG_CACHE_HOME)/$@/log
+	NVIM_LOG_FILE = $(XDG_CACHE_HOME)/$@/log
 	@mkdir -p $(DST)
 	cat $(SRC)/basic.vim > $(DST)/init.vim
 	cat $(SRC)/plugins.vim > $(DST)/init.vim
