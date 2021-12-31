@@ -4,21 +4,20 @@
 
 export ZSH_RC_FILES = $(wildcard src/zsh/rc.d/*))
 
-SCRIPT_DIR="src/"
+SCRIPT_DIR=src/
 
-XDG_CONFIG_HOME="build/.config"
-XDG_CACHE_HOME="build/.cache"
-XDG_DATA_HOME="build/.local/share"
+XDG_CONFIG_HOME=build/.config
+XDG_CACHE_HOME=build/.cache
+XDG_DATA_HOME=build/.local/share
 
 PACKAGES := zsh neovim
-CONFIG_PACKAGES := git/local, mc, htop, ranger, gem, tig, gnupg
-CACHE_PACKAGES := neovim/log, vim/backup, vim/swap, vim/undo, zsh, tig
-DATA_PACKAGES := zsh, man/man1, goenv/plugins, jenv/plugins, luaenv/plugins, nodenv/plugins, phpenv/plugins, plenv/plugins, pyenv/plugins, pyenv/plugins, rbenv/plugins
-
-
+CONFIG_PACKAGES := zsh git/local mc htop ranger gem tig gnupg
+CACHE_PACKAGES := neovim/log vim/backup vim/swap vim/undo zsh tig
+DATA_PACKAGES := zsh man/man1 goenv/plugins jenv/plugins luaenv/plugins nodenv/plugins phpenv/plugins plenv/plugins pyenv/plugins pyenv/plugins rbenv/plugins
 
 $(VERBOSE).SILENT:
 .PHONY: all clean setup_build build
+
 
 all: setup_build create_directories build
 	@printf "\e[32mBUILD SUCCESS!\e[0m\n"
@@ -29,10 +28,13 @@ setup_build:
 	$(MAKE) build --no-print-directory
 
 create_directories: 
-	$(foreach package, $(CONFIG_PACKAGES), $(mkdir -p $(XDG_CONFIG_HOME)/$(package)))
-	$(foreach package, $(CACHE_PACKAGES), $(mkdir -p $(XDG_CACHE_HOME)/$(package)))
-	$(foreach package, $(DATA_PACKAGES), $(mkdir -p $(XDG_DATA_HOME)/$(package)))
-	chmod 700 $(XDG_CONFIG_HOME)/gnupg
+	@mkdir -p $(XDG_CONFIG_HOME)
+	$(foreach package, $(CONFIG_PACKAGES), mkdir -p $(XDG_CONFIG_HOME)/$(package))
+	@mkdir -p $(XDG_CACHE_HOME)
+	$(foreach package, $(CACHE_PACKAGES), mkdir -p $(XDG_CACHE_HOME)/$(package))
+	@mkdir -p $(XDG_DATA_HOME)
+	$(foreach package, $(DATA_PACKAGES), mkdir -p $(XDG_DATA_HOME)/$(package))
+	@chmod 700 $(XDG_CONFIG_HOME)/gnupg
 
 clean:
 	rm -rf build
@@ -41,17 +43,16 @@ clean:
 # Add any dotfiles make rules BELOW:
 
 
-build: configs zsh neovim
+#build: configs zsh neovim
+build: 
 
 configs:
 
 zsh: SRC = src/zsh
-zsh: DST = $(XDG_CONFIG_HOME)/zsh 
+zsh: DST = $(XDG_CONFIG_HOME)/zsh
 zsh:
-	# Follow Up: Link zshenv if needed / ZDOTDIR dynamic check workflow (what is the use case for it)
-	cat $(SRC)/zshrc.rc > $(DST)/.zshrc
-	cat $(SRC)/zshenv.rc > $(DST)/.zshenv
-
+	cat $(SRC)/zshrc >> $(DST)/.zshrc
+	cat $(SRC)/zshenv >> $(DST)/.zshenv
 
 neovim: SRC = src/neovim/init
 neovim: DST = $(XDG_CONFIG_HOME)/nvim 
