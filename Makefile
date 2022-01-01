@@ -43,8 +43,7 @@ clean:
 # Add any dotfiles make rules BELOW:
 
 
-#build: configs zsh neovim
-build: 
+build: config PACKAGES 
 
 configs:
 
