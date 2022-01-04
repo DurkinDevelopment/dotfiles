@@ -47,6 +47,9 @@ zsh: DST = $(XDG_CONFIG_HOME)/zsh
 zsh:
 	cat $(SRC)/zshrc >> $(DST)/.zshrc
 	cat $(SRC)/zshenv >> $(DST)/.zshenv
+	cp $(SRC)/rc.d $(DST)/rc.d
+	cp $(SRC)/env.d $(DST)/env.d
+	
 
 neovim:	SRC = src/neovim/init
 neovim:	DST = $(XDG_CONFIG_HOME)/nvim
