@@ -1,5 +1,3 @@
-## TODO: Clean up exports - environment variables
-
 SCRIPT_DIR=src/
 
 XDG_CONFIG_HOME=build/.config
