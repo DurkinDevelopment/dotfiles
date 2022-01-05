@@ -1,6 +1,4 @@
 ## TODO: Clean up exports - environment variables
-# export PATH := ${HOME}/.local/bin:${HOME}/.node_modules/bin:${HOME}/.cargo/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/bin/core_perl:${HOME}/bin:${HOME}/google-cloud-sdk/bin
-# export GOPATH := ${HOME}
 
 SCRIPT_DIR=src/
 
