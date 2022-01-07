@@ -7,7 +7,7 @@ fi
 export DOTFILES="${ZDOTDIR%/*}"
 
 # Source local env files
-for envfile in "${ZDOTDIR}"/env.d/*; do
+for envfile in "${DOTDIR}"/src/zsh/env.d/*; do
     source "${envfile}"
 done
 unset envfile
