@@ -36,11 +36,11 @@ set_env_var_ZDOTDIR() {
 }
 
 set_env_var_HISTFILE() {
-	APPEND_HISTORY
+	#APPEND_HISTORY
 	export HISTFILE=~/.cache/zsh/.zsh_history
 	export HISTSIZE=100000000
 	export SAVEHIST=100000000
-	setopt INC_APPEND_HISTORY
+	#setopt INC_APPEND_HISTORY
 }
 
 
