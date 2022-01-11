@@ -43,8 +43,6 @@ zsh: DST = $(XDG_CONFIG_HOME)/zsh
 zsh:
 	cat $(SRC)/zshrc >> $(DST)/.zshrc
 	cat $(SRC)/zshenv >> $(DST)/.zshenv
-	mkdir $(DST)/.zsh_sessions
-	mkdir $(DST)/.zsh_history
 	
 
 neovim:	SRC = src/neovim/init
