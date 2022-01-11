@@ -43,7 +43,7 @@ zsh: DST = $(XDG_CONFIG_HOME)/zsh
 zsh:
 	cat $(SRC)/zshrc >> $(DST)/.zshrc
 	cat $(SRC)/zshenv >> $(DST)/.zshenv
-	
+	mkdir -p $(DST)/plugins/z/zsh-z.plugin.zsh	
 
 neovim:	SRC = src/neovim/init
 neovim:	DST = $(XDG_CONFIG_HOME)/nvim

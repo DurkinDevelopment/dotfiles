@@ -1,5 +1,5 @@
 # Iterate through each of the zsh rc files and source each of them
-for config_file in "${DOTDIR}/src/zsh/rc.d/*"; do
+for config_file in "${DOTDIR}"/src/zsh/rc.d/*; do
 	source "${config_file}"
 done
 
