@@ -12,7 +12,7 @@ setopt AUTO_CD # if the command is directory and cannot be executed, perfort cd 
 setopt CLOBBER # allow > redirection to truncate existing files
 setopt BRACE_CCL # allow brace character class list expansion
 setopt NO_BEEP # do not beep on errors
-setopt NO_NOMATCH # try to avoid the 'zsh no matches found...'
+setopt NO_NOMATCH # try to avoid the 'zsh: no matches found...'
 setopt INTERACTIVE_COMMENTS # allow use of comments in interactive code
 setopt AUTO_PARAM_SLASH # complete folders with / at end
 setopt LIST_TYPES # mark type of completion suggestions
@@ -26,4 +26,4 @@ unsetopt RM_STAR_SILENT # notify when rm is running with *
 setopt RM_STAR_WAIT # wait for 10 seconds confirmation when running rm with *
 
 # a bit fancy than default
-PROMPT_EOL_MARK='%K{red} %k':
+PROMPT_EOL_MARK='%K{red} %k'

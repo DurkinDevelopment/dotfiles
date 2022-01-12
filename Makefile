@@ -52,3 +52,8 @@ neovim:
 	cat $(SRC)/plugins.vim >> $(DST)/init.vim
 	cat $(SRC)/keymap.vim >> $(DST)/init.vim
 	cat $(SRC)/misc.vim >> $(DST)/init.vim
+
+fzf: SRC = src/tools/fzf
+fzf:
+	
+

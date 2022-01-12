@@ -1,29 +1,3 @@
-
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@DurkinDevelopment
-z0rc /
-dotfiles
-Public
-
-Code
-Issues
-Pull requests 1
-Actions
-Security
-
-    Insights
-
-dotfiles/zsh/rc.d/06_powerlevel10k.zsh
-@z0rc
-z0rc Refresh p10k config
-Latest commit 339d864 on Apr 23, 2021
-History
-1 contributor
-507 lines (448 sloc) 25.5 KB
 # Enable powerlevel10k prompt
 source "${ZDOTDIR}/plugins/powerlevel10k/powerlevel10k.zsh-theme"
 

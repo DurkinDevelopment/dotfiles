@@ -1,2 +1,2 @@
-# Enabling profiling
+# Enable profiling
 zmodload zsh/zprof

@@ -1,29 +1,3 @@
-
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@DurkinDevelopment
-z0rc /
-dotfiles
-Public
-
-Code
-Issues
-Pull requests 1
-Actions
-Security
-
-    Insights
-
-dotfiles/zsh/rc.d/07_aliases.zsh
-@z0rc
-z0rc Autoload user-facing functions
-Latest commit 77773f6 on Oct 27, 2021
-History
-1 contributor
-58 lines (52 sloc) 1.53 KB
 # Some handy suffix aliases
 alias -s log=less
 
