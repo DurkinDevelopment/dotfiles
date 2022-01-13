@@ -1,0 +1,30 @@
+[submodule "src/tools/diff-so-fancy"]
+	path = src/tools/diff-so-fancy
+	url = https://github.com/so-fancy/diff-so-fancy.git
+[submodule "src/tools/fzf"]
+	path = src/tools/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "src/tools/git-extras"]
+	path = src/tools/git-extras
+	url = https://github.com/tj/git-extras.git
+[submodule "src/tools/git-quick-stats"]
+	path = src/tools/git-quick-stats
+	url = https://github.com/arzzen/git-quick-stats.git
+[submodule "src/tools/httpstat"]
+	path = src/tools/httpstat
+	url = https://github.com/b4b4r07/httpstat.git
+[submodule "src/tools/spark"]
+	path = src/tools/spark
+	url = https://github.com/holman/spark.git
+[submodule "src/tools/spectre-meltdown-checker"]
+	path = src/tools/spectre-meltdown-checker
+	url = https://github.com/speed47/spectre-meltdown-checker.git
+[submodule "src/tools/testssl.sh"]
+	path = src/tools/testssl.sh
+	url = https://github.com/drwetter/testssl.sh.git
+[submodule "src/tools/tldr-bash-client"]
+	path = src/tools/tldr-bash-client
+	url = https://github.com/pepa65/tldr-bash-client.git
+[submodule "src/tools/zsh-bin"]
+	path = src/tools/zsh-bin
+	url = https://github.com/romkatv/zsh-bin.git
