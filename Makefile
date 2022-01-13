@@ -4,7 +4,7 @@ XDG_CONFIG_HOME=build/.config
 XDG_CACHE_HOME=build/.cache
 XDG_DATA_HOME=build/.local/share
 
-PACKAGES = configs zsh neovim
+PACKAGES = configs submodules zsh neovim
 CONFIG_PACKAGES = zsh nvim git/local mc htop ranger gem tig gnupg
 CACHE_PACKAGES = neovim/log vim/backup vim/swap vim/undo zsh tig
 DATA_PACKAGES = zsh man/man1 goenv/plugins jenv/plugins luaenv/plugins nodenv/plugins phpenv/plugins plenv/plugins pyenv/plugins pyenv/plugins rbenv/plugins
@@ -14,7 +14,7 @@ export NVIM_LOG_FILE = $(XDG_CACHE_HOME)/nvim/log
 
 
 $(VERBOSE).SILENT:
-.PHONY: all clean build install create_file_structure configs zsh neovim
+.PHONY: all clean build install create_file_structure configs submodules zsh neovim
 
 all:
 	$(MAKE) create_file_structure
@@ -36,8 +36,19 @@ create_file_structure:
 
 # Keep all dotfiles generated at ./build Add any dotfiles make rules BELOW:
 
+configs: SRC = src/config
+configs: DST = $(XDG_CONFIG_HOME)
 configs:
-	
+
+submodules:
+	@printf "Syncing submodules..."
+	git submodule sync > /dev/null
+	git submodule update --init --recursive > /dev/null
+	git clean -ffd
+	@printf "\e[32mSyncing Submodules - SUCCESS!\e[0m\n"
+
+
+
 zsh: SRC = src/zsh
 zsh: DST = $(XDG_CONFIG_HOME)/zsh
 zsh:
