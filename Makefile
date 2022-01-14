@@ -57,8 +57,6 @@ submodules:
 	git clean -ffd
 	@printf "\e[32mSyncing Submodules - SUCCESS!\e[0m\n"
 
-
-
 zsh: SRC = src/zsh
 zsh: DST = $(XDG_CONFIG_HOME)/zsh
 zsh:

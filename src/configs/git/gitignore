@@ -1,0 +1,58 @@
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+# Installer logs
+pip-log.txt
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+# virtualenv
+venv/
+.venv/
+
+### *env ###
+# pyenv
+.python-version
+# rbenv
+.ruby-version
+# nodenv
+.node-version
+# luaenv
+.lua-version
+# goenv
+.go-version
+
+### Vim ###
+# swap
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# plugin doc tags
+/doc/tags
+/doc/tags-*
+# local vimrc (per folder configuration)
+.lvimrc
+
+### Zsh ###
+# autoenv
+.autoenv.zsh
+.autoenv_leave.zsh
+# compiled zsh script
+*.zwc
+*.zwc.old
+
+### Kubernetes ###
+# local kubeconfig
+.kubeconfig
