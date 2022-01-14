@@ -43,11 +43,11 @@ configs:
 	cat $(SRC)/git/gitconfig >> $(DST)/git/config
 	cat $(SRC)/git/gitattributes >> $(DST)/git/attributes
 	cat $(SRC)/git/gitignore >> $(DST)/git/ignore
-	cat $(SRC)/mc.init >> $(DST)/mc/ini
+	cat $(SRC)/mc.ini >> $(DST)/mc/ini
 	cat $(SRC)/htoprc >> $(DST)/htop/htoprc
-	cat $(SRC)/ranger >> $(DST)/ranger/rc.conf
 	cat $(SRC)/gemrc >> $(DST)/gem/gemrc
-	cat $(SRC)/ranger-plugins >> $(DST)/ranger/plugins
+	cat $(SRC)/ranger >> $(DST)/ranger/rc.conf
+	cp -R $(SRC)/ranger-plugins $(DST)/ranger/plugins
 	@printf "\e[32mConfigs Build - SUCCESS!\e[0m\n"
 
 submodules:
