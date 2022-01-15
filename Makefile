@@ -31,6 +31,8 @@ create_file_structure:
 	mkdir -p $(addprefix $(XDG_CACHE_HOME)/,$(CACHE_PACKAGES))
 	mkdir -p $(addprefix $(XDG_DATA_HOME)/,$(DATA_PACKAGES))
 	@chmod 700 $(XDG_CONFIG_HOME)/gnupg
+	mkdir -p $(HOME)/.local/bin
+	mkdir -p $(HOME)/man/man1
 
 # Keep all dotfiles generated at ./build Add any dotfiles make rules BELOW:
 
@@ -91,8 +93,11 @@ neovim:
 fzf: SRC = src/tools/fzf
 fzf:
 	@printf "Installing fzf..."
-	cat $(SRC)/src/tools/fzf/bin/fzf >> $(HOME)/.local/bin/fzf 
-	cat $(SRC)/src/tools/fzf/bin/fzf-tmux >> $(HOME)/.local/bin/fzf-tmux 
-	cat $(SRC)/src/tools/fzf/man/man1/fzf.1 >> $(HOME)/man/man1/fzf.1
-	cat $(SRC)/src/tools/fzf/man/man1/fzf-tmux.1 >> $(HOME)/man/man1/fzf-tmux.1
+	pushd src/tools/fzf \
+	./install --bin &> /dev/null \
+	cat $(SRC)/bin/fzf >> $(HOME)/.local/bin/fzf \
+	cat $(SRC)/bin/fzf-tmux >> $(HOME)/.local/bin/fzf-tmux \
+	cat $(SRC)/man/man1/fzf.1 >> $(HOME)/man/man1/fzf.1 \
+	cat $(SRC)/man/man1/fzf-tmux.1 >> $(HOME)/man/man1/fzf-tmux.1 \
+	popd
 	@printf "\e[32mInstall fzf - SUCCESS!\e[0m\n"
