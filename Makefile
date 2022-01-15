@@ -37,7 +37,7 @@ create_file_structure:
 configs: SRC = src/configs
 configs: DST = $(XDG_CONFIG_HOME)
 configs:
-	@printf "Building configs..."
+	@printf "Building configs...\n"
 	cat $(SRC)/git/gitconfig >> $(DST)/git/config
 	cat $(SRC)/git/gitattributes >> $(DST)/git/attributes
 	cat $(SRC)/git/gitignore >> $(DST)/git/ignore
@@ -49,14 +49,14 @@ configs:
 	@printf "\e[32mBuild configs - SUCCESS!\e[0m\n"
 
 submodules:
-	@printf "Syncing submodules..."
+	@printf "Syncing submodules...\n"
 	git submodule sync > /dev/null
 	git submodule update --init --recursive > /dev/null
 	git clean -ffd
-	echo "\e[32mSyncing Submodules - SUCCESS!\e[0m\n"
+	@printf "\e[32mSyncing Submodules - SUCCESS!\e[0m\n"
 
 git_extras:
-	@printf "Installing git-extras..."
+	@printf "Installing git-extras...\n"
 	pushd src/tools/git-extras
 	PREFIX="${HOME}/.local" make install > /dev/null
 	popd
