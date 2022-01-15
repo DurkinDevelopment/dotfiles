@@ -5,14 +5,14 @@ XDG_CACHE_HOME=build/.cache
 XDG_DATA_HOME=build/.local/share
 
 SETUP = build install create_file_structure 
-PACKAGES = configs submodules git_extras git_quick_stats zsh neovim
+PACKAGES = configs submodules git_extras git_quick_stats zsh neovim fzf
 
 CONFIG_PACKAGES = zsh nvim git/local mc htop ranger gem tig gnupg
 CACHE_PACKAGES = neovim/log vim/backup vim/swap vim/undo zsh tig
 DATA_PACKAGES = zsh man/man1 goenv/plugins jenv/plugins luaenv/plugins nodenv/plugins phpenv/plugins plenv/plugins pyenv/plugins pyenv/plugins rbenv/plugins
 
 $(VERBOSE).SILENT:
-.PHONY: all clean ${SETUP} ${PACKAGES} 
+.PHONY: all clean $(SETUP) $(PACKAGES)
 
 all:
 	$(MAKE) create_file_structure
@@ -58,14 +58,14 @@ submodules:
 git_extras:
 	@printf "Installing git-extras..."
 	pushd src/tools/git-extras \
-	PREFIX="${HOME}/.local" make install > /dev/null \
+	PREFIX="$(HOME)/.local" make install > /dev/null \
 	popd 
 	@printf "\e[32mInstall git-extras - SUCCESS!\e[0m\n"
 
 git_quick_stats:
 	@printf "Installing git-quick-stats..."
 	pushd src/tools/git-quick-stats \
-	PREFIX="${HOME}/.local" make install > /dev/null \
+	PREFIX="$(HOME)/.local" make install > /dev/null \
 	popd 
 	@printf "\e[32mInstall git-quick-stats - SUCCESS!\e[0m\n"
 
@@ -90,5 +90,9 @@ neovim:
 
 fzf: SRC = src/tools/fzf
 fzf:
-	
-
+	@printf "Installing fzf..."
+	cat $(SRC)/src/tools/fzf/bin/fzf >> $(HOME)/.local/bin/fzf 
+	cat $(SRC)/src/tools/fzf/bin/fzf-tmux >> $(HOME)/.local/bin/fzf-tmux 
+	cat $(SRC)/src/tools/fzf/man/man1/fzf.1 >> $(HOME)/man/man1/fzf.1
+	cat $(SRC)/src/tools/fzf/man/man1/fzf-tmux.1 >> $(HOME)/man/man1/fzf-tmux.1
+	@printf "\e[32mInstall fzf - SUCCESS!\e[0m\n"
