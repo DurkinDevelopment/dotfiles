@@ -4,17 +4,15 @@ XDG_CONFIG_HOME=build/.config
 XDG_CACHE_HOME=build/.cache
 XDG_DATA_HOME=build/.local/share
 
-PACKAGES = configs submodules zsh neovim
+SETUP = build install create_file_structure 
+PACKAGES = configs git_extras git_quick_stats zsh neovim
+
 CONFIG_PACKAGES = zsh nvim git/local mc htop ranger gem tig gnupg
 CACHE_PACKAGES = neovim/log vim/backup vim/swap vim/undo zsh tig
 DATA_PACKAGES = zsh man/man1 goenv/plugins jenv/plugins luaenv/plugins nodenv/plugins phpenv/plugins plenv/plugins pyenv/plugins pyenv/plugins rbenv/plugins
 
-# Is there a more efficient way to do this? If I create the directory is the export environment variable even needed?
-export NVIM_LOG_FILE = $(XDG_CACHE_HOME)/nvim/log
-
-
 $(VERBOSE).SILENT:
-.PHONY: all clean build install create_file_structure configs submodules zsh neovim
+.PHONY: all clean ${SETUP} ${PACKAGES} 
 
 all:
 	$(MAKE) create_file_structure
@@ -48,14 +46,21 @@ configs:
 	cat $(SRC)/gemrc >> $(DST)/gem/gemrc
 	cat $(SRC)/ranger >> $(DST)/ranger/rc.conf
 	cp -R $(SRC)/ranger-plugins $(DST)/ranger/plugins
-	@printf "\e[32mConfigs Build - SUCCESS!\e[0m\n"
+	@printf "\e[32mBuild configs - SUCCESS!\e[0m\n"
 
-submodules:
-	@printf "Syncing submodules..."
-	git submodule sync > /dev/null
-	git submodule update --init --recursive > /dev/null
-	git clean -ffd
-	@printf "\e[32mSyncing Submodules - SUCCESS!\e[0m\n"
+git_extras:
+	@printf "Installing git-extras..."
+	pushd src/tools/git-extras
+	PREFIX="${HOME}/.local" make install > /dev/null
+	popd
+	@printf "\e[32mInstall git-extras - SUCCESS!\e[0m\n"
+
+git_quick_stats:
+	@printf "Installing git-quick-stats..."
+	pushd src/tools/git-quick-stats
+	PREFIX="${HOME}/.local" make install > /dev/null
+	popd
+	@printf "\e[32mInstall git-quick-stats - SUCCESS!\e[0m\n"
 
 zsh: SRC = src/zsh
 zsh: DST = $(XDG_CONFIG_HOME)/zsh
