@@ -5,7 +5,7 @@ XDG_CACHE_HOME=build/.cache
 XDG_DATA_HOME=build/.local/share
 
 SETUP = build install create_file_structure 
-PACKAGES = configs git_extras git_quick_stats zsh neovim
+PACKAGES = configs submodules git_extras git_quick_stats zsh neovim
 
 CONFIG_PACKAGES = zsh nvim git/local mc htop ranger gem tig gnupg
 CACHE_PACKAGES = neovim/log vim/backup vim/swap vim/undo zsh tig
@@ -47,6 +47,13 @@ configs:
 	cat $(SRC)/ranger >> $(DST)/ranger/rc.conf
 	cp -R $(SRC)/ranger-plugins $(DST)/ranger/plugins
 	@printf "\e[32mBuild configs - SUCCESS!\e[0m\n"
+
+submodules:
+	@printf "Syncing submodules..."
+	git submodule sync > /dev/null
+	git submodule update --init --recursive > /dev/null
+	git clean -ffd
+	echo "\e[32mSyncing Submodules - SUCCESS!\e[0m\n"
 
 git_extras:
 	@printf "Installing git-extras..."
