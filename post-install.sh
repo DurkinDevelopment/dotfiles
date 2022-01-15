@@ -40,16 +40,7 @@ set_env_var_NVIM_LOG_FILE() {
 	export NVIM_LOG_FILE = ${HOME}/.cache/nvim/log
 }
 
-set_submodules() {
-	echo "Syncing submodules..."
-	git submodule sync > /dev/null
-	git submodule update --init --recursive > /dev/null
-	git clean -ffd
-	echo "\e[32mSyncing Submodules - SUCCESS!\e[0m\n"
-}
-
 
 # Any post-install actions go HERE
 set_environment_variables
-set_submodules
 echo "dotifles deploy script finish!"
