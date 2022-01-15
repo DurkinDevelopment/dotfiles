@@ -37,7 +37,7 @@ create_file_structure:
 configs: SRC = src/configs
 configs: DST = $(XDG_CONFIG_HOME)
 configs:
-	@printf "Building configs...\n"
+	@printf "Building configs..."
 	cat $(SRC)/git/gitconfig >> $(DST)/git/config
 	cat $(SRC)/git/gitattributes >> $(DST)/git/attributes
 	cat $(SRC)/git/gitignore >> $(DST)/git/ignore
@@ -49,40 +49,44 @@ configs:
 	@printf "\e[32mBuild configs - SUCCESS!\e[0m\n"
 
 submodules:
-	@printf "Syncing submodules...\n"
+	@printf "Syncing submodules..."
 	git submodule sync > /dev/null
 	git submodule update --init --recursive > /dev/null
 	git clean -ffd
-	@printf "\e[32mSyncing Submodules - SUCCESS!\e[0m\n"
+	@printf "\e[32mSync Submodules - SUCCESS!\e[0m\n"
 
 git_extras:
-	@printf "Installing git-extras...\n"
-	pushd src/tools/git-extras
-	PREFIX="${HOME}/.local" make install > /dev/null
-	popd
+	@printf "Installing git-extras..."
+	pushd src/tools/git-extras \
+	PREFIX="${HOME}/.local" make install > /dev/null \
+	popd 
 	@printf "\e[32mInstall git-extras - SUCCESS!\e[0m\n"
 
 git_quick_stats:
 	@printf "Installing git-quick-stats..."
-	pushd src/tools/git-quick-stats
-	PREFIX="${HOME}/.local" make install > /dev/null
-	popd
+	pushd src/tools/git-quick-stats \
+	PREFIX="${HOME}/.local" make install > /dev/null \
+	popd 
 	@printf "\e[32mInstall git-quick-stats - SUCCESS!\e[0m\n"
 
 zsh: SRC = src/zsh
 zsh: DST = $(XDG_CONFIG_HOME)/zsh
 zsh:
+	@printf "Building zsh files..."
 	cat $(SRC)/zshrc >> $(DST)/.zshrc
 	cat $(SRC)/zshenv >> $(DST)/.zshenv
 	mkdir -p $(DST)/plugins/z/zsh-z.plugin.zsh	
+	@printf "\e[32mBuild zsh files - SUCCESS!\e[0m\n"
 
 neovim:	SRC = src/neovim/init
 neovim:	DST = $(XDG_CONFIG_HOME)/nvim
 neovim:
+	@printf "Building neovim files..."
 	cat $(SRC)/basic.vim >> $(DST)/init.vim
 	cat $(SRC)/plugins.vim >> $(DST)/init.vim
 	cat $(SRC)/keymap.vim >> $(DST)/init.vim
 	cat $(SRC)/misc.vim >> $(DST)/init.vim
+	@printf "\e[32mBuild neovim files - SUCCESS!\e[0m\n"
 
 fzf: SRC = src/tools/fzf
 fzf:
