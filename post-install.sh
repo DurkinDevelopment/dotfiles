@@ -7,6 +7,7 @@ set_environment_variables() {
 	set_env_var_GOPATH
 	set_env_var_DOTDIR
 	set_env_var_ZDOTDIR
+	set_env_var_NVIM_LOG_FILE
 }
 
 set_env_var_PATH() {
@@ -35,15 +36,20 @@ set_env_var_ZDOTDIR() {
 	fi
 }
 
-set_env_var_HISTFILE() {
-	#APPEND_HISTORY
-	export HISTFILE=~/.cache/zsh/.zsh_history
-	export HISTSIZE=100000000
-	export SAVEHIST=100000000
-	#setopt INC_APPEND_HISTORY
+set_env_var_NVIM_LOG_FILE() {
+	export NVIM_LOG_FILE = ${HOME}/.cache/nvim/log
+}
+
+set_submodules() {
+	echo "Syncing submodules..."
+	git submodule sync > /dev/null
+	git submodule update --init --recursive > /dev/null
+	git clean -ffd
+	echo "\e[32mSyncing Submodules - SUCCESS!\e[0m\n"
 }
 
 
 # Any post-install actions go HERE
 set_environment_variables
+set_submodules
 echo "dotifles deploy script finish!"
