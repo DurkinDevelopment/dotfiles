@@ -1,3 +1,4 @@
 build/
 active/
 draft/
+.DS_Store
