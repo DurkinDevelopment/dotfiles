@@ -1,0 +1,14 @@
+language: sh
+dist: xenial
+
+branches:
+  only:
+  - master
+
+addons:
+  apt:
+    packages:
+      - zsh
+
+script:
+  - make test
