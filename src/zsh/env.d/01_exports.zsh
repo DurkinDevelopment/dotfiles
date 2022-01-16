@@ -51,7 +51,7 @@ export TASKRC="${XDG_CONFIG_HOME}/task/taskrc"
 export PERL_CPANM_HOME="${XDG_CACHE_HOME}/cpanm"
 export SOLARGRAPH_CACHE="${XDG_CACHE_HOME}/solargraph"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
-export NVIM_LOG_FILE = "${XDG_CACHE_HOME}/nvim/log"
+export NVIM_LOG_FILE="${XDG_CACHE_HOME}/nvim/log"
 
 # Ensure we have local paths enabled
 path=(/usr/local/bin /usr/local/sbin ${path})

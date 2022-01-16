@@ -30,9 +30,10 @@ create_file_structure:
 	mkdir -p $(addprefix $(XDG_CONFIG_HOME)/,$(CONFIG_PACKAGES))
 	mkdir -p $(addprefix $(XDG_CACHE_HOME)/,$(CACHE_PACKAGES))
 	mkdir -p $(addprefix $(XDG_DATA_HOME)/,$(DATA_PACKAGES))
-	@chmod 700 $(XDG_CONFIG_HOME)/gnupg
 	mkdir -p $(HOME)/.local/bin
+	mkdir -p $(HOME)/.local/etc
 	mkdir -p $(HOME)/man/man1
+	@chmod 700 $(XDG_CONFIG_HOME)/gnupg
 
 # Keep all dotfiles generated at ./build Add any dotfiles make rules BELOW:
 
