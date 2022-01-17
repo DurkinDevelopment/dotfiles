@@ -7,9 +7,9 @@ XDG_DATA_HOME=build/.local/share
 SETUP = build install create_file_structure 
 PACKAGES = configs submodules git_extras git_quick_stats zsh neovim fzf
 
-CONFIG_PACKAGES = zsh nvim git/local mc htop ranger gem tig gnupg
-CACHE_PACKAGES = neovim/log vim/backup vim/swap vim/undo zsh tig
-DATA_PACKAGES = zsh man/man1 goenv/plugins jenv/plugins luaenv/plugins nodenv/plugins phpenv/plugins plenv/plugins pyenv/plugins pyenv/plugins rbenv/plugins
+CONFIG_PACKAGES = zsh nvim git/local mc htop ranger gem tig gnupg zsh/plugins/{powerlevel10k,fzf-tab,autoenv,autopair,abbr,syntax-highlighting,autosuggestions}
+CACHE_PACKAGES = neovim/log vim/{backup,swap,undo} zsh tig
+DATA_PACKAGES = zsh man/man1 goenv/plugins {jenv,luaenv,nodenv,phpenv,plenv,pyenv,rbenv}/plugins
 
 $(VERBOSE).SILENT:
 .PHONY: all clean $(SETUP) $(PACKAGES)
@@ -78,8 +78,22 @@ zsh:
 	@printf "Building zsh files..."
 	cat $(SRC)/zshrc >> $(DST)/.zshrc
 	cat $(SRC)/zshenv >> $(DST)/.zshenv
+	cat $(SRC)/zprofile >> $(DST)/.zprofile
 	mkdir -p $(DST)/plugins/z/zsh-z.plugin.zsh	
 	@printf "\e[32mBuild zsh files - SUCCESS!\e[0m\n"
+	$(MAKE) zsh_tools
+
+zsh_tools: SRC = src/zsh/plugins
+zsh_tools: DST = $(XDG_CONFIG_HOME)/zsh/plugins
+zsh_tools:
+	@printf "Building zsh tools..."
+	cat $(SRC)/powerlevel10k/powerlevel10k.zsh-theme >> $(DST)/powerlevel10k/powerlevel10k.zsh-theme
+	cat $(SRC)/fzf-tab/fzf-tab.zsh >> $(DST)/fzf-tab/fzf-tab.zsh
+	cat $(SRC)/zsh-autoenv/autoenv.zsh >> $(DST)/autoenv/autoenv.zsh
+	cat $(SRC)/zsh-autopair/autopair.zsh >> $(DST)/autopair/autopair.zsh
+	cat $(SRC)/zsh-abbr/zsh-abbr.zsh >> $(DST)/abbr/zsh-abbr.zsh
+	cat $(SRC)/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh >> $(DST)/syntax-highlighting/zsh-syntax-highlighting.zsh
+	@printf "\e[32mBuild zsh tools - SUCCESS!\e[0m\n"
 
 neovim:	SRC = src/neovim/init
 neovim:	DST = $(XDG_CONFIG_HOME)/nvim
