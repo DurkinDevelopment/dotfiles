@@ -1,6 +1,7 @@
 abbr ga="git add ."
 abbr gaa="git add --all"
 abbr gco="git commit"
+abbr gcm="git commit -m"
 abbr gd="git diff"
 abbr gp="git pull"
 abbr gpp="git pull --prune"

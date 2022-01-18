@@ -25,6 +25,42 @@
 [submodule "src/tools/tldr-bash-client"]
 	path = src/tools/tldr-bash-client
 	url = https://github.com/pepa65/tldr-bash-client.git
-[submodule "src/tools/zsh-bin"]
-	path = src/tools/zsh-bin
-	url = https://github.com/romkatv/zsh-bin.git
+[submodule "src/zsh/plugins/zsh-abbr"]
+	path = src/zsh/plugins/zsh-abbr
+	url = https://github.com/olets/zsh-abbr.git
+[submodule "src/zsh/plugins/zsh-z"]
+	path = src/zsh/plugins/zsh-z
+	url = https://github.com/agkozak/zsh-z.git
+[submodule "src/zsh/plugins/zsh-syntax-highlighting"]
+	path = src/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "src/zsh/plugins/powerlevel10k"]
+	path = src/zsh/plugins/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "src/zsh/plugins/git-completion"]
+	path = src/zsh/plugins/git-completion
+	url = https://github.com/felipec/git-completion.git
+[submodule "src/zsh/plugins/fzf-tab"]
+	path = src/zsh/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab.git
+[submodule "src/zsh/plugins/dircolors-solarized"]
+	path = src/zsh/plugins/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git
+[submodule "src/zsh/plugins/zsh-defer"]
+	path = src/zsh/plugins/zsh-defer
+	url = https://github.com/romkatv/zsh-defer.git
+[submodule "src/zsh/plugins/zsh-completions"]
+	path = src/zsh/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "src/zsh/plugins/zsh-autosuggestions"]
+	path = src/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "src/zsh/plugins/zsh-autopair"]
+	path = src/zsh/plugins/zsh-autopair
+	url = https://github.com/hlissner/zsh-autopair.git
+[submodule "src/zsh/plugins/zsh-autoenv"]
+	path = src/zsh/plugins/zsh-autoenv
+	url = https://github.com/Tarrasch/zsh-autoenv.git
+[submodule "src/zsh/plugins/archive"]
+	path = src/zsh/plugins/archive
+	url = https://github.com/romkatv/archive.git
