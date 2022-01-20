@@ -64,3 +64,12 @@
 [submodule "src/zsh/plugins/archive"]
 	path = src/zsh/plugins/archive
 	url = https://github.com/romkatv/archive.git
+[submodule "src/tools/--force"]
+	path = src/tools/--force
+	url = https://github.com/romkatv/zsh-bin.git
+[submodule "src/tools/zsh-bin"]
+	path = src/tools/zsh-bin
+	url = https://github.com/romkatv/zsh-bin.git
+[submodule "src/tools/src/tools/zsh-bin"]
+	path = src/tools/src/tools/zsh-bin
+	url = https://github.com/romkatv/zsh-bin.git
