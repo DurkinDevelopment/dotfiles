@@ -7,7 +7,7 @@ XDG_DATA_HOME=build/.local/share
 SETUP = build install create_file_structure 
 PACKAGES = configs submodules git_extras git_quick_stats zsh neovim fzf
 
-CONFIG_PACKAGES = zsh nvim git/local mc htop ranger gem tig gnupg tools zsh/plugins 
+CONFIG_PACKAGES = zsh nvim git/local mc htop ranger gem tig gnupg tools {zsh,tmux}/plugins 
 CACHE_PACKAGES = neovim/log vim/{backup,swap,undo} zsh tig
 DATA_PACKAGES = zsh man/man1 goenv/plugins {jenv,luaenv,nodenv,phpenv,plenv,pyenv,rbenv}/plugins
 
@@ -58,6 +58,7 @@ submodules:
 	git clean -ffd
 	cp -r src/zsh/plugins/* $(XDG_CONFIG_HOME)/zsh/plugins
 	cp -r src/tools/* $(XDG_CONFIG_HOME)/tools 
+	cp -r src/tmux/plugins* $(XDG_CONFIG_HOME)/tmux/plugins
 	@printf "\e[32mSync Submodules - SUCCESS!\e[0m\n"
 
 git_extras:
