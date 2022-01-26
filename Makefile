@@ -5,7 +5,7 @@ XDG_CACHE_HOME=build/.cache
 XDG_DATA_HOME=build/.local/share
 
 SETUP = build install create_file_structure 
-PACKAGES = configs submodules git_extras git_quick_stats zsh neovim fzf
+PACKAGES = configs submodules git_extras git_quick_stats zsh tmux neovim fzf
 
 CONFIG_PACKAGES = zsh nvim git/local mc htop ranger gem tig gnupg tools {zsh,tmux}/plugins 
 CACHE_PACKAGES = neovim/log vim/{backup,swap,undo} zsh tig
@@ -84,6 +84,13 @@ zsh:
 	cat $(SRC)/zprofile >> $(DST)/.zprofile
 	mkdir -p $(DST)/plugins/z/zsh-z.plugin.zsh	
 	@printf "\e[32mBuild zsh files - SUCCESS!\e[0m\n"
+
+tmux: SRC = src/tmux
+tmux: DST = $(XDG_CONFIG_HOME)/tmux
+tmux:
+	@printf "Building tmux files..."
+	cat $(SRC)/tmux.conf >> $(DST)/tmux.conf
+	@printf "\e[32mBuild tmux files - SUCCESS!\e[0m\n"
 
 neovim:	SRC = src/neovim/init
 neovim:	DST = $(XDG_CONFIG_HOME)/nvim
