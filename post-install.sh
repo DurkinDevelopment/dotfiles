@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Any post-install shell script functions go HERE
-# Use the post-install.sh to source any environment variables
+# There are environment variables sourced here AND in the zshenv
 set_environment_variables() {
 	set_env_var_DOTDIR
 	set_env_var_ZDOTDIR
