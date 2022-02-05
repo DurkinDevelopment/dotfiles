@@ -94,3 +94,9 @@
 [submodule "src/tmux/plugins/tmux-yank"]
 	path = src/tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank.git
+[submodule "src/tmux/plugins/tmux-fzf"]
+	path = src/tmux/plugins/tmux-fzf
+	url = https://github.com/sainnhe/tmux-fzf
+[submodule "src/tools/fd"]
+	path = src/tools/fd
+	url = https://github.com/sharkdp/fd
