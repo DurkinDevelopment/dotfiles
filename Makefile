@@ -90,6 +90,7 @@ tmux: DST = $(XDG_CONFIG_HOME)/tmux
 tmux:
 	@printf "Building tmux files..."
 	cat $(SRC)/tmux.conf >> $(DST)/tmux.conf
+	cp -r src/tmuxinator $(XDG_CONFIG_HOME)/tmuxinator
 	@printf "\e[32mBuild tmux files - SUCCESS!\e[0m\n"
 
 neovim:	SRC = src/neovim/init
